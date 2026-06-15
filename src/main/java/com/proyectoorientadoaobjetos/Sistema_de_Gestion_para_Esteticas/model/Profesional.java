@@ -1,0 +1,36 @@
+package com.proyectoorientadoaobjetos.Sistema_de_Gestion_para_Esteticas.model;
+
+import jakarta.persistence.*;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "profesionales")
+public class Profesional {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String apellido;
+
+    @Column(nullable = false)
+    private String especialidad; // Ej: Barbero, Estilista, Manicurista
+
+    private String telefono;
+    private String correo;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL)
+    private List<Reserva> reservas;
+
+    // Getters y Setters
+}
