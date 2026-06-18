@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class ReservaService {
 
@@ -20,8 +21,8 @@ public class ReservaService {
     @Autowired
     private ProfesionalRepository profesionalRepository;
 
-    @Autowired
-    private ServicioRepository servicioRepository;
+    //@Autowired
+    //private ServicioRepository servicioRepository;
 
     // Obtener todas las reservas
     public List<Reserva> obtenerTodas() {
@@ -119,4 +120,27 @@ public class ReservaService {
         }
         reservaRepository.deleteById(id);
     }
+    
+    // Actualizar reserva completa
+    public Reserva actualizar(Long id, Reserva reservaActualizada) {
+    Reserva existente = reservaRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Reserva no encontrada con ID: " + id));
+
+    // Validar que el cliente existe
+    clienteRepository.findById(reservaActualizada.getCliente().getId())
+        .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+
+    // Validar que el profesional existe
+    profesionalRepository.findById(reservaActualizada.getProfesional().getId())
+        .orElseThrow(() -> new RuntimeException("Profesional no encontrado"));
+
+    existente.setFecha(reservaActualizada.getFecha());
+    existente.setHora(reservaActualizada.getHora());
+    existente.setObservaciones(reservaActualizada.getObservaciones());
+    existente.setCliente(reservaActualizada.getCliente());
+    existente.setProfesional(reservaActualizada.getProfesional());
+
+    return reservaRepository.save(existente);
+}
+
 }

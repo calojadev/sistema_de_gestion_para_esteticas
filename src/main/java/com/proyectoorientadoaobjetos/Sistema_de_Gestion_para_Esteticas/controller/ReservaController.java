@@ -90,4 +90,15 @@ public class ReservaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // PUT http://localhost:8080/api/reservas/1
+    @PutMapping("/{id}")
+    public ResponseEntity<Reserva> actualizar(@PathVariable Long id, @RequestBody Reserva reserva) {
+    try {
+        Reserva actualizada = reservaService.actualizar(id, reserva);
+        return ResponseEntity.ok(actualizada);
+    } catch (RuntimeException e) {
+        return ResponseEntity.badRequest().build();
+    }
+}
 }

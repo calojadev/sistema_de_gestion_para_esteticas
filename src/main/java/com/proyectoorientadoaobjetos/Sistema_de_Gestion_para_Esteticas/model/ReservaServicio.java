@@ -2,6 +2,7 @@ package com.proyectoorientadoaobjetos.Sistema_de_Gestion_para_Esteticas.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
@@ -14,6 +15,7 @@ public class ReservaServicio {
 
     @ManyToOne
     @JoinColumn(name = "reserva_id", nullable = false)
+    @JsonIgnore
     private Reserva reserva;
 
     @ManyToOne
