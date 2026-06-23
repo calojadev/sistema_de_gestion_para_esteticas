@@ -1,49 +1,345 @@
-/* General */
+/* ============================================
+   Sistema Gestión Estéticas — Paleta rosa/coral
+   ============================================ */
+
+:root {
+  --rosa-50: #fff5f5;
+  --rosa-100: #ffe8e6;
+  --coral-300: #ffb3a8;
+  --coral-400: #ff9685;
+  --coral-500: #fb7b6a;
+  --coral-600: #f25f4c;
+  --coral-700: #d94632;
+  --tinta-900: #2b2024;
+  --tinta-700: #5a4a4d;
+  --tinta-500: #8a7679;
+  --tinta-300: #c9bcbe;
+  --borde: #f1dedb;
+  --blanco: #ffffff;
+  --sombra: 0 4px 16px rgba(217, 70, 50, 0.07);
+  --sombra-hover: 0 8px 24px rgba(217, 70, 50, 0.12);
+  --radio: 16px;
+  --radio-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #f8f9fa;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar */
-.navbar-brand {
-  font-weight: 600;
+/* ============================================
+   Topbar
+   ============================================ */
+.topbar {
+  background-color: var(--tinta-900);
+  color: var(--blanco);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
 }
 
-/* Tarjetas del panel principal */
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--blanco);
+  text-decoration: none;
+}
+
+.topbar-brand i {
+  color: var(--coral-400);
+  font-size: 1.3rem;
+}
+
+/* ============================================
+   Layout: sidebar + contenido
+   ============================================ */
+.app-layout {
+  display: flex;
+  min-height: calc(100vh - 56px);
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background-color: var(--blanco);
+  border-right: 1px solid var(--borde);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radio-sm);
+  color: var(--tinta-700);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.sidebar-link i {
+  font-size: 1.1rem;
+  width: 22px;
+  text-align: center;
+}
+
+.sidebar-link:hover {
+  background-color: var(--rosa-100);
+  color: var(--coral-700);
+}
+
+.sidebar-link.activo {
+  background-color: var(--coral-500);
+  color: var(--blanco);
+  box-shadow: var(--sombra);
+}
+
+.sidebar-link.activo i {
+  color: var(--blanco);
+}
+
+.main-content {
+  flex: 1;
+  padding: 32px;
+  min-width: 0;
+}
+
+/* ============================================
+   Hero de bienvenida (panel principal)
+   ============================================ */
+.hero-bienvenida {
+  background: linear-gradient(120deg, var(--coral-300), var(--coral-500));
+  border-radius: var(--radio);
+  padding: 36px 40px;
+  color: var(--blanco);
+  margin-bottom: 28px;
+  box-shadow: var(--sombra);
+}
+
+.hero-bienvenida h2 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero-bienvenida p {
+  opacity: 0.95;
+  max-width: 560px;
+  margin-bottom: 0;
+}
+
+/* ============================================
+   Tarjetas del panel principal
+   ============================================ */
 .card-modulo {
-  transition: transform 0.2s;
-  cursor: pointer;
+  background-color: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 28px 22px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tinta-900);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  box-shadow: var(--sombra);
+  height: 100%;
 }
 
 .card-modulo:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+  color: var(--tinta-900);
 }
 
-/* Tablas */
+.card-modulo-icono {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.4rem;
+}
+
+.icono-clientes {
+  background-color: #ffe2de;
+  color: var(--coral-700);
+}
+
+.icono-profesionales {
+  background-color: #e3f3ec;
+  color: #2f9e6e;
+}
+
+.icono-servicios {
+  background-color: #ffe9d6;
+  color: #d97f2c;
+}
+
+.icono-reservas {
+  background-color: #ffd9d3;
+  color: var(--coral-700);
+}
+
+.card-modulo h5 {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-modulo p {
+  color: var(--tinta-500);
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+}
+
+.card-modulo .enlace-accion {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--coral-600);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================
+   Encabezados de sección
+   ============================================ */
+.seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.seccion-header h4 {
+  font-weight: 700;
+  margin-bottom: 0;
+  color: var(--tinta-900);
+}
+
+/* ============================================
+   Botones (paleta coral)
+   ============================================ */
+.btn-coral {
+  background-color: var(--coral-500);
+  border-color: var(--coral-500);
+  color: var(--blanco);
+}
+
+.btn-coral:hover {
+  background-color: var(--coral-600);
+  border-color: var(--coral-600);
+  color: var(--blanco);
+}
+
+.btn-outline-coral {
+  background-color: transparent;
+  border: 1px solid var(--coral-500);
+  color: var(--coral-600);
+}
+
+.btn-outline-coral:hover {
+  background-color: var(--coral-500);
+  color: var(--blanco);
+}
+
+/* ============================================
+   Tarjetas y tablas
+   ============================================ */
+.card {
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.card.shadow-sm {
+  box-shadow: var(--sombra) !important;
+}
+
 .table thead {
-  background-color: #343a40;
-  color: white;
+  background-color: var(--tinta-900);
+  color: var(--blanco);
+}
+
+.table thead th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--rosa-50);
 }
 
 /* Badges de estado reserva */
 .badge-pendiente {
-  background-color: #ffc107;
-  color: #000;
+  background-color: #ffd9a0;
+  color: #7a5200;
 }
 .badge-confirmada {
-  background-color: #198754;
-  color: #fff;
+  background-color: #bfe8d4;
+  color: #1f6b46;
 }
 .badge-cancelada {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #ffc7bd;
+  color: #99291a;
 }
 .badge-completada {
-  background-color: #0d6efd;
-  color: #fff;
+  background-color: #c9def7;
+  color: #1a4e8a;
 }
 
 /* Botones de acción en tablas */
 .btn-accion {
   padding: 2px 8px;
   font-size: 12px;
+}
+
+/* Modales con acento coral en el header */
+.modal-header.bg-dark {
+  background-color: var(--tinta-900) !important;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--borde);
+    padding: 12px;
+  }
+
+  .sidebar-link {
+    flex-shrink: 0;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
 }

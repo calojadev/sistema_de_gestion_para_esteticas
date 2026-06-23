@@ -228,7 +228,7 @@ async function cambiarEstado(id, estadoActual) {
   select.className = "form-select form-select-sm";
   select.innerHTML = `<option value="">Seleccionar...</option>${opciones}`;
 
-  const { value: nuevoEstado } = await Swal.fire({
+  const resultado = await Swal.fire({
     title: "Cambiar estado",
     html: `<p class="mb-2">Estado actual: <strong>${estadoActual}</strong></p>${select.outerHTML}`,
     confirmButtonText: "Confirmar",
@@ -236,7 +236,9 @@ async function cambiarEstado(id, estadoActual) {
     cancelButtonText: "Cancelar",
     preConfirm: () =>
       document.querySelector(".swal2-html-container select").value,
-  }).catch(() => ({ value: null }));
+  });
+
+  const nuevoEstado = resultado.isConfirmed ? resultado.value : null;
 
   if (!nuevoEstado) return;
 

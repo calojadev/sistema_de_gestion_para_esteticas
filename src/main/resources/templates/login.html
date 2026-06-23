@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión — Sistema Gestión Estéticas</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --coral-500: #fb7b6a;
+        --coral-600: #f25f4c;
+        --tinta-900: #2b2024;
+        --rosa-50: #fff5f5;
+        --borde: #f1dedb;
+      }
+      body {
+        background-color: var(--rosa-50);
+        font-family: "Segoe UI", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .login-card {
+        background: #fff;
+        border: 1px solid var(--borde);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(217, 70, 50, 0.1);
+        padding: 44px 40px 36px;
+        width: 100%;
+        max-width: 400px;
+      }
+      .login-logo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--coral-500), var(--coral-600));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.6rem;
+        color: #fff;
+      }
+      .login-titulo {
+        font-weight: 700;
+        color: var(--tinta-900);
+        text-align: center;
+        margin-bottom: 4px;
+      }
+      .login-subtitulo {
+        color: #8a7679;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-bottom: 28px;
+      }
+      .form-label {
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: var(--tinta-900);
+      }
+      .form-control:focus {
+        border-color: var(--coral-500);
+        box-shadow: 0 0 0 0.2rem rgba(251, 123, 106, 0.2);
+      }
+      .btn-login {
+        background-color: var(--coral-500);
+        border-color: var(--coral-500);
+        color: #fff;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 10px;
+        width: 100%;
+        margin-top: 8px;
+      }
+      .btn-login:hover {
+        background-color: var(--coral-600);
+        border-color: var(--coral-600);
+        color: #fff;
+      }
+      .alerta-error {
+        background: #fff0ee;
+        border: 1px solid #ffb3a8;
+        color: #99291a;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .alerta-logout {
+        background: #eafbf2;
+        border: 1px solid #9de6c0;
+        color: #1f6b46;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.88rem;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <div class="login-logo"><i class="bi bi-scissors"></i></div>
+      <h4 class="login-titulo">Sistema Gestión Estéticas</h4>
+      <p class="login-subtitulo">Ingresa tus credenciales para continuar</p>
+
+      <div th:if="${param.error}" class="alerta-error">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        Usuario o contraseña incorrectos.
+      </div>
+      <div th:if="${param.logout}" class="alerta-logout">
+        <i class="bi bi-check-circle-fill"></i>
+        Sesión cerrada correctamente.
+      </div>
+
+      <form th:action="@{/login}" method="post">
+        <div class="mb-3">
+          <label for="username" class="form-label">Usuario</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-person" style="color: var(--coral-500)"></i>
+            </span>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="Ingresa tu usuario"
+              autocomplete="username"
+              required
+              autofocus
+            />
+          </div>
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white">
+              <i class="bi bi-lock" style="color: var(--coral-500)"></i>
+            </span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Ingresa tu contraseña"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-login">
+          <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar sesión
+        </button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -15,83 +15,104 @@
     <link rel="stylesheet" href="css/estilos.css" />
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <i class="bi bi-scissors"></i> Sistema Gestión Estéticas
-        </a>
-        <span class="text-white"
-          ><i class="bi bi-person-badge"></i> Profesionales</span
-        >
-      </div>
+    <!-- Topbar -->
+    <nav class="topbar">
+      <a class="topbar-brand" href="index.html">
+        <i class="bi bi-scissors"></i> Sistema Gestión Estéticas
+      </a>
+      <button
+        onclick="cerrarSesion()"
+        class="btn btn-sm btn-outline-light ms-auto"
+      >
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
     </nav>
 
-    <div class="container mt-4">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="mb-0">Gestión de Profesionales</h4>
-        <button class="btn btn-success" onclick="abrirModalNuevo()">
-          <i class="bi bi-plus-circle"></i> Nuevo Profesional
-        </button>
-      </div>
+    <div class="app-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <a href="reservas.html" class="sidebar-link">
+          <i class="bi bi-calendar-check"></i> Reservas
+        </a>
+        <a href="clientes.html" class="sidebar-link">
+          <i class="bi bi-people"></i> Clientes
+        </a>
+        <a href="profesionales.html" class="sidebar-link activo">
+          <i class="bi bi-person-badge"></i> Profesionales
+        </a>
+        <a href="servicios.html" class="sidebar-link">
+          <i class="bi bi-list-stars"></i> Servicios
+        </a>
+      </aside>
 
-      <!-- Búsqueda por especialidad -->
-      <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-          <div class="row g-2 align-items-end">
-            <div class="col-md-4">
-              <label class="form-label">Buscar por especialidad</label>
-              <input
-                type="text"
-                id="inputBuscarEspecialidad"
-                class="form-control"
-                placeholder="Ej: Estilista"
-              />
-            </div>
-            <div class="col-md-2">
-              <button
-                class="btn btn-outline-success w-100"
-                onclick="buscarPorEspecialidad()"
-              >
-                <i class="bi bi-search"></i> Buscar
-              </button>
-            </div>
-            <div class="col-md-2">
-              <button
-                class="btn btn-outline-secondary w-100"
-                onclick="cargarTodos()"
-              >
-                <i class="bi bi-arrow-clockwise"></i> Ver todos
-              </button>
+      <!-- Contenido principal -->
+      <main class="main-content">
+        <div class="seccion-header">
+          <h4>Gestión de Profesionales</h4>
+          <button class="btn btn-coral" onclick="abrirModalNuevo()">
+            <i class="bi bi-plus-circle"></i> Nuevo Profesional
+          </button>
+        </div>
+
+        <!-- Búsqueda por especialidad -->
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <div class="row g-2 align-items-end">
+              <div class="col-md-4">
+                <label class="form-label">Buscar por especialidad</label>
+                <input
+                  type="text"
+                  id="inputBuscarEspecialidad"
+                  class="form-control"
+                  placeholder="Ej: Estilista"
+                />
+              </div>
+              <div class="col-md-2">
+                <button
+                  class="btn btn-outline-coral w-100"
+                  onclick="buscarPorEspecialidad()"
+                >
+                  <i class="bi bi-search"></i> Buscar
+                </button>
+              </div>
+              <div class="col-md-2">
+                <button
+                  class="btn btn-outline-secondary w-100"
+                  onclick="cargarTodos()"
+                >
+                  <i class="bi bi-arrow-clockwise"></i> Ver todos
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="alerta" class="alert d-none"></div>
+        <div id="alerta" class="alert d-none"></div>
 
-      <div class="card shadow-sm">
-        <div class="card-body p-0">
-          <table class="table table-hover mb-0">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Especialidad</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th class="text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tablaProfesionales">
-              <tr>
-                <td colspan="6" class="text-center text-muted py-4">
-                  Cargando profesionales...
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="card shadow-sm">
+          <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Especialidad</th>
+                  <th>Correo</th>
+                  <th>Teléfono</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaProfesionales">
+                <tr>
+                  <td colspan="6" class="text-center text-muted py-4">
+                    Cargando profesionales...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
 
     <!-- Modal crear/editar -->
@@ -175,7 +196,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-success"
+              class="btn btn-coral"
               onclick="guardarProfesional()"
             >
               <i class="bi bi-save"></i> Guardar
@@ -223,5 +244,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/profesionales.js"></script>
+    <script>
+      async function cerrarSesion() {
+        // Obtener el token CSRF de la cookie
+        const csrfToken = document.cookie
+          .split("; ")
+          .find((r) => r.startsWith("XSRF-TOKEN="))
+          ?.split("=")[1];
+        await fetch("/logout", {
+          method: "POST",
+          headers: { "X-XSRF-TOKEN": csrfToken ?? "" },
+        });
+        window.location.href = "/login?logout=true";
+      }
+    </script>
   </body>
 </html>
